@@ -1,6 +1,6 @@
 import utils
 
-player = utils.Dice()
+
 request = ""
 while request != "QUIT":
     try:
@@ -10,9 +10,9 @@ while request != "QUIT":
         check = check.replace("DIS", "")
         check = check.split("D")
 
-        if "SKILLS" in request:
+        if "SKILLS" and not "D" in request:
             number_of_skills = input("How many Skills? >")
-            player.skill_generation(int(number_of_skills))
+            utils.skill_generation(int(number_of_skills))
 
         elif request == "QUIT":
             break
@@ -25,29 +25,30 @@ while request != "QUIT":
             # print(request)
             amount_of_dice = int(request[0])
             number_of_faces = int(request[1])
-            player.rolls(amount_of_dice, number_of_faces, "adv")
+            utils.rolls(amount_of_dice, number_of_faces, "adv")
 
         elif "DIS" in request:
-            # print(True)
+            # print(True) 
             request = request.replace("DIS", "")
             # print(request)
             request = request.split("D")
             # print(request)
             amount_of_dice = int(request[0])
             number_of_faces = int(request[1])
-            player.rolls(amount_of_dice, number_of_faces, "dis")
+            utils.rolls(amount_of_dice, number_of_faces, "dis")
 
         elif request != ("QUIT" and "SKILLS" and "ADV" and "DIS"):
             request = request.split("D")
             # print(request)
             amount_of_dice = int(request[0])
             number_of_faces = int(request[1])
-            player.rolls(amount_of_dice, number_of_faces, "")
+            utils.rolls(amount_of_dice, number_of_faces, "")
 
         else:
             break
 
     except ValueError:
+        print("invalid input")
         pass
 
 
